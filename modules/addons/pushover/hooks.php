@@ -15,6 +15,8 @@
 if (!defined("WHMCS"))
 	die("This file cannot be accessed directly");
 
+include_once('functions.php');
+
 function pushover_ticket_open($vars) {
 	$ticketid = $vars['ticketid'];
 	$userid = $vars['userid'];
@@ -23,21 +25,39 @@ function pushover_ticket_open($vars) {
 	$subject = $vars['subject'];
 	$message = $vars['message'];
 	$priority = $vars['priority'];
-	$userkey = $vars['userkey'];
-	$userkey = $vars['systemurl'];
 
-	include('php-pushover.php');
+	$pushover_userkey = po_get_userkey();
+	if (!$pushover_userkey) return false;
 
-	$push = new Pushover();
-	$push->setToken('a7HcPjJeGmAtyG4e6tCYqyXk5wc5Xj');
-	$push->setUser($userkey);
-	$push->setTitle('[Ticket ID: '.$ticketid.'] New Support Ticket Opened');
-	$push->setMessage($subject);
+	$po_ticket_url = po_get_admin_ticket_url($ticketid);
+	
+	$pushover_api_url = 'https://api.pushover.net/1/messages.json';
+	$pushover_app_token = 'a7HcPjJeGmAtyG4e6tCYqyXk5wc5Xj';
+	$pushover_title = '[Ticket ID: '.$ticketid.'] New Support Ticket Opened';
+	$pushover_url = $po_ticket_url;
+	$pushover_url_title = "Open Admin Area to View Ticket";
+	$pushover_message = $message;
 
-	$push->send();
+	$pushover_post_fields = array(
+			  	'token' => $pushover_app_token,
+			  	'user' => $pushover_userkey,
+			  	'title' => $pushover_title,
+			  	'message' => $pushover_message,
+			  	'url' => $pushover_url,
+			  	'url_title' => $pushover_url_title,
+			  	'priority' => 1
+			  	);
 
-	logModuleCall('pushover','hook_ticket_open', $arr, $vars);
+	$pushover_resp = curlCall($pushover_api_url, $pushover_post_fields, $pushover_options);
+
+	$parsed_resp = json_decode($pushover_resp, TRUE);
+
+	if ($parsed_resp['status'] != 1) {
+		logModuleCall('pushover','pushover_server_error', $pushover_post_fields, $pushover_resp);
+	}
+
+	logModuleCall('pushover','hook_ticket_open', $pushover_post_fields, $pushover_resp);
 
 }
 
-add_hook("TicketOpen",1,"pushover_ticket_open");
+add_hook("TicketOpen",1,"pushover_ticket_open"); 
