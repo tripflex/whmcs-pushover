@@ -28,6 +28,7 @@ This release is still in beta stages so use at your own risk.  Tested working on
 Feature | Availability | Status
 --- | --- | ---
 New support ticket opened notification | `active` | complete
+New support ticket reply notification | `active` | testing
 Link to ticket from notification | `active` | complete
 Configure instances to send notifications (New, Reply, Dept Change, Etc) | `planned` | pending
 Allow priority to be based off ticket priority | `planned` | pending
