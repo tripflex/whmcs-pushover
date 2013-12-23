@@ -1,9 +1,13 @@
-## WHMCS 5.2+ Notifications for Pushover (pushover.net)
+## WHMCS Pushover (pushover.net) Notifications
 Author: Myles McNamara (get@smyl.es)
 
 ### Description
 
 This is an addon module for WHMCS (whmcs.com) to send push notifications using the Pushover API.
+
+Currently the only working feature is high priority notification for a new support ticket being opened.  There are many other features and configurable options planned which are listed below.
+
+This release is still in beta stages so use at your own risk.  Tested working on WHMCS 5.2.1 and WHMCS 5.3.1 Beta.
 
 ### Screenshots
 <table>
