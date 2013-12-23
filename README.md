@@ -43,6 +43,11 @@ Configure notification timestamp | `planned` | in dev
 Custom app title in Pushover | `planned` | in dev
 Custom ticket URL | `planned` | pending
 
+### Needs Work
+***
+- Format special characters in responses
+- Consolodate code functions
+- Concatenate message
 
 Got an idea?  Stick a <a href="https://github.com/tripflex/whmcs-pushover/fork">fork</a> in it, send a <a href="https://github.com/tripflex/whmcs-pushover/pulls">pull request</a>, <a href="https://github.com/tripflex/whmcs-pushover/issues">open a new issue</a>, or <a href="http://smyl.es/contact/">email me</a>!
 
