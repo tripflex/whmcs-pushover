@@ -45,7 +45,7 @@ Custom ticket URL | `planned` | pending
 
 ### Needs Work
 ***
-- Format special characters in responses
+- Format special characters in responses (COMPLETED)
 - Consolodate code functions
 - Concatenate message
 
