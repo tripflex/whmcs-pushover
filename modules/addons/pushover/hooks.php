@@ -26,6 +26,9 @@ function pushover_ticket_open($vars) {
 	$message = $vars['message'];
 	$priority = $vars['priority'];
 
+	// Convert HTML entities (single/double quote) back to single or double quote
+	$message = htmlspecialchars_decode($message, ENT_QUOTES);
+
 	$pushover_userkey = po_get_userkey();
 	if (!$pushover_userkey) return false;
 
@@ -48,7 +51,7 @@ function pushover_ticket_open($vars) {
 			  	'priority' => 1
 			  	);
 
-	$pushover_resp = curlCall($pushover_api_url, $pushover_post_fields, $pushover_options);
+	$pushover_resp = curlCall($pushover_api_url, $pushover_encoded_post_fields, $pushover_options);
 
 	$parsed_resp = json_decode($pushover_resp, TRUE);
 
@@ -67,6 +70,10 @@ function pushover_ticket_reply($vars) {
 	$subject = $vars['subject'];
 	$message = $vars['message'];
 	$priority = $vars['priority'];
+	po_debug($message);
+	// Convert HTML entities (single/double quote) back to single or double quote
+	$message = htmlspecialchars_decode($message, ENT_QUOTES);
+	po_debug($message);
 
 	$pushover_userkey = po_get_userkey();
 	if (!$pushover_userkey) return false;
@@ -90,7 +97,10 @@ function pushover_ticket_reply($vars) {
 			  	'priority' => 1
 			  	);
 
-	$pushover_resp = curlCall($pushover_api_url, $pushover_post_fields, $pushover_options);
+	// Convert to URL-Encoded string to post as application/x-www-form-urlencoded
+	$pushover_encoded_post_fields = http_build_query($pushover_post_fields);
+
+	$pushover_resp = curlCall($pushover_api_url, $pushover_encoded_post_fields, $pushover_options);
 
 	$parsed_resp = json_decode($pushover_resp, TRUE);
 
