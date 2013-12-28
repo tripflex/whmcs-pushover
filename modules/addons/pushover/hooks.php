@@ -18,6 +18,7 @@ if (!defined("WHMCS"))
 require_once('functions.php');
 
 function pushover_ticket_open($vars) {
+
 	$ticketid = $vars['ticketid'];
 	$userid = $vars['userid'];
 	$deptid = $vars['deptid'];
@@ -51,6 +52,9 @@ function pushover_ticket_open($vars) {
 			  	'priority' => 1
 			  	);
 
+	// Convert to URL-Encoded string to post as application/x-www-form-urlencoded
+	$pushover_encoded_post_fields = http_build_query($pushover_post_fields);
+
 	$pushover_resp = curlCall($pushover_api_url, $pushover_encoded_post_fields, $pushover_options);
 
 	$parsed_resp = json_decode($pushover_resp, TRUE);
@@ -63,6 +67,7 @@ function pushover_ticket_open($vars) {
 
 }
 function pushover_ticket_reply($vars) {
+
 	$ticketid = $vars['ticketid'];
 	$userid = $vars['userid'];
 	$deptid = $vars['deptid'];
@@ -70,16 +75,15 @@ function pushover_ticket_reply($vars) {
 	$subject = $vars['subject'];
 	$message = $vars['message'];
 	$priority = $vars['priority'];
-	po_debug($message);
+
 	// Convert HTML entities (single/double quote) back to single or double quote
 	$message = htmlspecialchars_decode($message, ENT_QUOTES);
-	po_debug($message);
 
 	$pushover_userkey = po_get_userkey();
 	if (!$pushover_userkey) return false;
 
 	$po_ticket_url = po_get_admin_ticket_url($ticketid);
-	
+
 	$pushover_api_url = 'https://api.pushover.net/1/messages.json';
 	$pushover_app_token = 'a7HcPjJeGmAtyG4e6tCYqyXk5wc5Xj';
 	$pushover_title = '[Ticket ID: '.$ticketid.'] New Support Ticket Response';
