@@ -15,7 +15,7 @@
 if (!defined("WHMCS"))
     die("This file cannot be accessed directly");
 
-require('functions.php');
+require_once('functions.php');
 
 function pushover_config() {
     $configarray = array(

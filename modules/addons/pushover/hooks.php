@@ -15,7 +15,7 @@
 if (!defined("WHMCS"))
 	die("This file cannot be accessed directly");
 
-include_once('functions.php');
+require_once('functions.php');
 
 function pushover_ticket_open($vars) {
 	$ticketid = $vars['ticketid'];
