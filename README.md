@@ -1,6 +1,9 @@
 ## WHMCS Pushover (pushover.net) Notifications
 Author: Myles McNamara (get@smyl.es)
 
+# Do not use v1.1 branch
+This is a branch in development, I decided to take an OOP approach to this plugin (trying it from scratch), so don't use that branch, stick with the master branch, I will pull that one in once it is functional
+
 ### Description
 
 This is an addon module for WHMCS (whmcs.com) to send push notifications using the Pushover API.
