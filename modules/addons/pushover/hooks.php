@@ -18,7 +18,7 @@ if (!defined("WHMCS"))
 define( 'PO_ROOT', dirname( __FILE__ ) );
 
 require_once( PO_ROOT . '/functions.php');
-require_once( AC_ROOT . '/inc/whmcse.php' );
+require_once( PO_ROOT . '/inc/whmcse.php' );
 
 function pushover_ticket_open($vars) {
 
