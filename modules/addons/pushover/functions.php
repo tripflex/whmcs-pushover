@@ -15,6 +15,10 @@
 if (!defined("WHMCS"))
 	die("This file cannot be accessed directly");
 
+define( 'PO_ROOT', dirname( __FILE__ ) );
+
+require_once( PO_ROOT . '/inc/whmcse.php' );
+
 function po_get_ssl_url(){
 	global $CONFIG;
 	return $CONFIG['SystemSSLURL'];
@@ -46,11 +50,11 @@ function po_get_admin_url(){
 }
 function po_get_admin_ticket_url($ticketid){
 	if(po_get_enable_mobile()){
-		$query_string = '/mobile/tickets.php?action=view&id=';
+		$ticket_url = PO_WHMCSe::get_url() . '/mobile/tickets.php?action=view&id=' . $ticketid;
 	} else {
-		$query_string = '/supporttickets.php?action=viewticket&id=';
+		$ticket_url = po_get_admin_url() . '/supporttickets.php?action=viewticket&id=' . $ticketid;
 	}
-	return po_get_admin_url().$query_string.$ticketid;
+	return $ticketurl;
 }
 function po_get_userkey(){
     $sql = mysql_query("SELECT value FROM tbladdonmodules WHERE module='pushover' AND setting='userkey'");
