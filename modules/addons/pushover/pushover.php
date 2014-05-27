@@ -8,7 +8,7 @@
  * @author     Myles McNamara (get@smyl.es)
  * @copyright  Copyright (c) Myles McNamara 2013-2014
  * @license    GPL v3+
- * @version    1.0
+ * @version    1.0.0
  * @link       https://github.com/tripflex/whmcs-pushover
  */
 
@@ -21,10 +21,11 @@ function pushover_config() {
     $configarray = array(
     "name" => "Pushover Notifications",
     "description" => "This addon allows you to send notifications via Pushover (pushover.net) API",
-    "version" => "1.0",
+    "version" => "1.0.0",
     "author" => "Myles McNamara",
     "language" => "english",
     "fields" => array(
+        "enable_mobile" => array ("FriendlyName" => "Use Mobile URL", "Type" => "yesno", "Size" => "25", "Description" => "Enable to use the mobile URL for link to ticket", ),
         "userkey" => array ("FriendlyName" => "User Key", "Type" => "text", "Size" => "75", "Description" => "User Key from <a href=\"http://pushover.net\" target=\"_blank\"> Pushover</a>.", "Default" => "", )
     ));
     return $configarray;

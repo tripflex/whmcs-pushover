@@ -8,7 +8,7 @@
  * @author     Myles McNamara (get@smyl.es)
  * @copyright  Copyright (c) Myles McNamara 2013-2014
  * @license    GPL v3+
- * @version    1.0
+ * @version    1.0.0
  * @link       https://github.com/tripflex/whmcs-pushover
  */
 
@@ -45,7 +45,12 @@ function po_get_admin_url(){
 	return $whmcsurl."/".$customadminpath;
 }
 function po_get_admin_ticket_url($ticketid){
-	return po_get_admin_url()."/supporttickets.php?action=viewticket&id=".$ticketid;
+	if(po_get_enable_mobile()){
+		$query_string = '/mobile/tickets.php?action=view&id=';
+	} else {
+		$query_string = '/supporttickets.php?action=viewticket&id=';
+	}
+	return po_get_admin_url().$query_string.$ticketid;
 }
 function po_get_userkey(){
     $sql = mysql_query("SELECT value FROM tbladdonmodules WHERE module='pushover' AND setting='userkey'");
@@ -54,6 +59,15 @@ function po_get_userkey(){
                 return $result['value'];
         } else {
                 po_log('userkey_error', $sql, $result);
+                return false;
+        }
+}
+function po_get_enable_mobile(){
+    $sql = mysql_query("SELECT value FROM tbladdonmodules WHERE module='pushover' AND setting='enable_mobile'");
+        $result = mysql_fetch_array($sql);
+        if ($result['value']){
+                return $result['value'];
+        } else {
                 return false;
         }
 }
