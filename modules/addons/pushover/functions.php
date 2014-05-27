@@ -53,7 +53,7 @@ function po_get_admin_ticket_url($ticketid){
 	} else {
 		$ticket_url = po_get_admin_url() . '/supporttickets.php?action=viewticket&id=' . $ticketid;
 	}
-	return $ticketurl;
+	return $ticket_url;
 }
 
 function po_get_userkey(){
