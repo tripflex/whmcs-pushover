@@ -124,7 +124,7 @@ function po_check_update() {
 	return WHMCSe::output_update('https://github.com/tripflex/whmcs-pushover/raw/master/release', '1.0.1', 'Pushover');
 }
 
-add_hook( "AdminHomepage", 1, "dynadot_hook_check_update" );
+add_hook( "AdminHomepage", 1, "po_check_update" );
 
 add_hook("TicketOpen",1,"pushover_ticket_open");
 add_hook("TicketUserReply",1,"pushover_ticket_reply");
