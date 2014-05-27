@@ -8,14 +8,17 @@
  * @author     Myles McNamara (get@smyl.es)
  * @copyright  Copyright (c) Myles McNamara 2013-2014
  * @license    GPL v3+
- * @version    1.0
+ * @version    1.0.1
  * @link       https://github.com/tripflex/whmcs-pushover
  */
 
 if (!defined("WHMCS"))
 	die("This file cannot be accessed directly");
 
-require_once('functions.php');
+define( 'PO_ROOT', dirname( __FILE__ ) );
+
+require_once( PO_ROOT . '/functions.php');
+require_once( AC_ROOT . '/inc/whmcse.php' );
 
 function pushover_ticket_open($vars) {
 
@@ -115,6 +118,13 @@ function pushover_ticket_reply($vars) {
 	logModuleCall('pushover','hook_ticket_open', $pushover_post_fields, $pushover_resp);
 
 }
+
+function po_check_update() {
+
+	return WHMCSe::output_update('https://github.com/tripflex/whmcs-pushover/raw/master/release', '1.0.1', 'Pushover');
+}
+
+add_hook( "AdminHomepage", 1, "dynadot_hook_check_update" );
 
 add_hook("TicketOpen",1,"pushover_ticket_open");
 add_hook("TicketUserReply",1,"pushover_ticket_reply");

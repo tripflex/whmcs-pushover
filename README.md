@@ -1,8 +1,9 @@
 ## WHMCS Pushover (pushover.net) Notifications
-Author: Myles McNamara (get@smyl.es)
++ Author: Myles McNamara (get@smyl.es)
++ Current Version: 1.0.1
 
-# Do not use v1.1 branch
-This is a branch in development, I decided to take an OOP approach to this plugin (trying it from scratch), so don't use that branch, stick with the master branch, I will pull that one in once it is functional
+### Do not use v1.1 branch
+This is a branch in development and may not be fully functional.
 
 ### Description
 
@@ -31,6 +32,8 @@ This release is still in beta stages so use at your own risk.  Tested working on
 Feature | Availability | Status
 --- | --- | ---
 New support ticket opened notification | `active` | complete
+Option to use mobile URL for ticket | `active` | complete
+Update notice on admin dashboard | `active` | complete
 New support ticket reply notification | `active` | testing
 Link to ticket from notification | `active` | complete
 Configure instances to send notifications (New, Reply, Dept Change, Etc) | `planned` | pending
@@ -58,3 +61,15 @@ Got an idea?  Stick a <a href="https://github.com/tripflex/whmcs-pushover/fork">
 <a href="https://github.com/tripflex/whmcs-pushover/archive/master.zip">Download</a> latest release, and copy the entire <b>modules</b> directory to your root WHMCS installation.
 
 Login to WHMCS Admin area, Setup >> Addon Modules, then activate "Pushover Notifications".  Once you activate the addon module, click on <b>Configure</b>, enter your user key from Pushover (pushover.net), select Access Control, click Save Changes, and profit!
+
+### Changelog
+
+#### 1.0.1
+`May 27 2014`
+- Added mobile ticket URL option
+- Added update checker
+- Added WHMCSe framework
+- Fixed version output on sidebar
+
+#### 1.0.0
+- Initial Release

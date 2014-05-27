@@ -8,20 +8,23 @@
  * @author     Myles McNamara (get@smyl.es)
  * @copyright  Copyright (c) Myles McNamara 2013-2014
  * @license    GPL v3+
- * @version    1.0.0
+ * @version    1.0.1
  * @link       https://github.com/tripflex/whmcs-pushover
  */
 
 if (!defined("WHMCS"))
     die("This file cannot be accessed directly");
 
-require_once('functions.php');
+define( 'PO_ROOT', dirname( __FILE__ ) );
+
+require_once( PO_ROOT . '/functions.php');
+require_once( AC_ROOT . '/inc/whmcse.php' );
 
 function pushover_config() {
     $configarray = array(
     "name" => "Pushover Notifications",
     "description" => "This addon allows you to send notifications via Pushover (pushover.net) API",
-    "version" => "1.0.0",
+    "version" => "1.0.1",
     "author" => "Myles McNamara",
     "language" => "english",
     "fields" => array(
@@ -56,6 +59,7 @@ function pushover_deactivate() {
 function pushover_sidebar($vars) {
 
     $modulelink = $vars['modulelink'];
+    $version = $vars['version'];
 
     $sidebar = '<span class="header"><img src="images/icons/addonmodules.png" class="absmiddle" width="16" height="16" /> Pushover Notifications</span>
 <ul class="menu">

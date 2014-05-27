@@ -8,7 +8,7 @@
  * @author     Myles McNamara (get@smyl.es)
  * @copyright  Copyright (c) Myles McNamara 2013-2014
  * @license    GPL v3+
- * @version    1.0.0
+ * @version    1.0.1
  * @link       https://github.com/tripflex/whmcs-pushover
  */
 
