@@ -121,7 +121,7 @@ function pushover_ticket_reply($vars) {
 
 function po_check_update() {
 
-	return PO_WHMCSe::output_update('https://github.com/tripflex/whmcs-pushover/raw/master/release', '1.0.1', 'Pushover');
+	return PO_WHMCSe::output_update('https://raw.githubusercontent.com/tripflex/whmcs-pushover/master/release', '1.0.1', 'Pushover');
 }
 
 add_hook( "AdminHomepage", 1, "po_check_update" );

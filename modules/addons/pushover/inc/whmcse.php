@@ -116,9 +116,13 @@ if (!class_exists('PO_WHMCSe')){
          * @return boolean         True if newer version is available, false if not
          */
         public static function check_need_update($url, $version, $module = 'whmcse') {
-            $release = curlCall($url);
 
-            logModuleCall( $module, 'update check', $version, intval($release));
+            $postfields = array();
+            $options = array( 'CURLOPT_FOLLOWLOCATION' => 'true' );
+
+            $release = curlCall($url, $postfields, $options);
+
+            logModuleCall( $module, 'update check', $version, $release);
 
             if ( intval( $release ) > intval( $version ) ) {
                 return true;
